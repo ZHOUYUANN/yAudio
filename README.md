@@ -1,3 +1,5 @@
+[预览图](https://github.com/ZHOUYUANN/yAudio/blob/main/audio.gif)
+
 ### 介绍
 
 一个 canvas 可视化波形音频播放器。
