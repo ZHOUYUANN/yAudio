@@ -867,32 +867,37 @@
       this.commentList = [
         {
           duration: 8,
-          avatar: './1.jpeg',
-          user: '周源',
+          avatar:
+            'https://git.poker/ZHOUYUANN/BlogBed/blob/master/2.11s74qf2536o.webp?raw=true',
+          user: '卷灯酒',
           text: '哈哈哈哈哈'
         },
         {
           duration: 40,
-          avatar: './2.jpeg',
-          user: '周梦',
+          avatar:
+            './https://git.poker/ZHOUYUANN/BlogBed/blob/master/3.5z5sa9i3xwg0.webp?raw=true',
+          user: '深院空巷',
           text: '我是一只小可爱'
         },
         {
           duration: 42,
-          avatar: './3.jpg',
+          avatar:
+            './https://git.poker/ZHOUYUANN/BlogBed/blob/master/4.56lixtsqn0s0.webp?raw=true',
           user: '周大帅',
           text: '我是大帅哥！！！'
         },
         {
           duration: 44,
-          avatar: './1.jpeg',
-          user: '周大帅1111',
+          avatar:
+            './https://git.poker/ZHOUYUANN/BlogBed/blob/master/1.1mq8h4qx4ups.webp?raw=true',
+          user: '孤痞°',
           text: '当爱情遗落成遗迹 用象形刻划成回忆'
         },
         {
           duration: 146,
-          avatar: './4.jpg',
-          user: '周小梦',
+          avatar:
+            './https://git.poker/ZHOUYUANN/BlogBed/blob/master/1.1mq8h4qx4ups.webp?raw=true',
+          user: '莫忘初心丶',
           text: '垃圾王者荣耀'
         }
       ]
