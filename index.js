@@ -60,7 +60,7 @@
       this.attachDomEvents()
     },
     bindHandlers: function () {
-      for (const methodName of [
+      for (var methodName of [
         'onWaveformClick',
         'onWaveformMouseMove',
         'onWaveformMouseLeave',
@@ -482,12 +482,10 @@
     onCommentMouseMove: function (event) {
       this.commentMoving = true
       var element = this.option.element,
-        currentTarget = event.currentTarget,
-        wrapper = element.querySelector('.yAudio-wrapper')
+        currentTarget = event.currentTarget
 
       element.classList.add('comment')
       currentTarget.classList.add('current')
-      wrapper.classList.add('active')
 
       this.renderComment(currentTarget.offsetLeft)
     },
@@ -497,8 +495,8 @@
         currentTarget = event.currentTarget,
         wrapper = element.querySelector('.yAudio-wrapper')
 
-      currentTarget.classList.remove('current')
       wrapper.classList.remove('active')
+      currentTarget.classList.remove('current')
     },
     onAudioError: function () {
       this.waveform.innerHTML = ' - Error happens ╥﹏╥'
@@ -516,10 +514,8 @@
       var element = this.option.element,
         commentList = this.commentList,
         wrapper = element.querySelector('.yAudio-wrapper')
-      if (wrapper.children.length) return
 
       wrapper.innerHTML = ''
-
       commentList.forEach(function (item) {
         var left = (item.duration / self.audio.duration) * self.width
         var obj = {
@@ -530,7 +526,7 @@
           'data-text': item.text
         }
         var comment = document.createElement('div')
-        for (let [key, value] of Object.entries(obj)) {
+        for (var [key, value] of Object.entries(obj)) {
           comment.setAttribute(key, value)
         }
         wrapper.appendChild(comment)
@@ -720,6 +716,7 @@
       }
     },
     onSubmit: function (event) {
+      console.log(11)
       var duration = this.audio.currentTime
       if (event.keyCode === 13) {
         var text = event.target.value
@@ -833,39 +830,38 @@
     },
     renderComment: function (offsetLeft) {
       var element = this.option.element,
-        WIDTH = 30,
         popover = element.querySelector('.yAudio-popover-wrapper'),
         wrapper = element.querySelector('.yAudio-wrapper'),
+        user = popover.querySelector('.yAudio-popover-wrapper__user'),
+        comment = popover.querySelector('.yAudio-popover-wrapper__comment'),
         items = element.querySelectorAll('.yAudio-wrapper__item')
 
-      wrapper.classList.remove('active')
-      for (var i = 0; i < items.length; i++) {
-        if (
-          items[i].offsetLeft <= offsetLeft &&
-          offsetLeft <= items[i].offsetLeft + WIDTH
-        ) {
-          if (offsetLeft < this.width / 2) {
-            popover.classList.remove('right')
+      items.forEach(function (item) {
+        item.classList.remove('current')
+      })
+      var index = this._findClosestElementIndex(items, offsetLeft)
 
-            popover.style.right = 'auto'
-            popover.style.left = items[i].offsetLeft + 'px'
-          } else {
-            popover.classList.add('right')
-
-            popover.style.left = 'auto'
-            popover.style.right =
-              this.width - items[i].offsetLeft - WIDTH + 'px'
-          }
-          wrapper.classList.add('active')
-          items[i].classList.add('current')
-          popover.querySelector('.yAudio-popover-wrapper__user').innerHTML =
-            items[i].getAttribute('data-user')
-          popover.querySelector('.yAudio-popover-wrapper__comment').innerHTML =
-            items[i].getAttribute('data-text')
-        } else {
-          items[i].classList.remove('current')
-        }
+      if (index === -1) {
+        wrapper.classList.remove('active')
+        return
       }
+
+      if (offsetLeft < this.width / 2) {
+        popover.classList.remove('right')
+
+        popover.style.right = 'auto'
+        popover.style.left = items[index].offsetLeft + 'px'
+      } else {
+        popover.classList.add('right')
+
+        popover.style.left = 'auto'
+        popover.style.right =
+          this.width - items[index].offsetLeft - items[index].clientWidth + 'px'
+      }
+      wrapper.classList.add('active')
+      items[index].classList.add('current')
+      user.innerHTML = items[index].getAttribute('data-user')
+      comment.innerHTML = items[index].getAttribute('data-text')
     },
     getCommentList: function () {
       this.commentList = [
@@ -886,6 +882,12 @@
           avatar: './3.jpg',
           user: '周大帅',
           text: '我是大帅哥！！！'
+        },
+        {
+          duration: 44,
+          avatar: './1.jpeg',
+          user: '周大帅1111',
+          text: '当爱情遗落成遗迹 用象形刻划成回忆'
         },
         {
           duration: 146,
@@ -1018,6 +1020,31 @@
         p = p.previousSibling
       }
       return index
+    },
+    _findClosestElementIndex: function (elements, offsetLeft) {
+      var elementsArr = [].slice.call(elements)
+      var result = elementsArr.reduce(
+        function (last, current, index) {
+          var difference = offsetLeft - current.offsetLeft
+          if (
+            Math.abs(difference) < last.diff &&
+            0 <= difference &&
+            difference <= current.clientWidth
+          ) {
+            last.diff = Math.abs(difference)
+            last.index = index
+          }
+          return {
+            diff: last.diff,
+            index: last.index
+          }
+        },
+        {
+          diff: Infinity,
+          index: -1
+        }
+      )
+      return result.index
     },
     _isArray: function (data) {
       return Object.prototype.toString.call(data) === '[object Array]'
