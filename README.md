@@ -1,4 +1,6 @@
-![预览图](https://github.com/ZHOUYUANN/yAudio/blob/main/audio.gif)
+![预览图](https://git.poker/ZHOUYUANN/BlogBed/blob/master/audio1.1vt1ck8xx24g.gif?raw=true)
+
+![预览图](https://git.poker/ZHOUYUANN/BlogBed/blob/master/audio.2l2g8ii1dvk0.gif?raw=true)
 
 ### 介绍
 
