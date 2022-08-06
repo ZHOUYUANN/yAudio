@@ -875,28 +875,28 @@
         {
           duration: 40,
           avatar:
-            './https://git.poker/ZHOUYUANN/BlogBed/blob/master/3.5z5sa9i3xwg0.webp?raw=true',
+            'https://git.poker/ZHOUYUANN/BlogBed/blob/master/3.5z5sa9i3xwg0.webp?raw=true',
           user: '深院空巷',
           text: '我是一只小可爱'
         },
         {
           duration: 42,
           avatar:
-            './https://git.poker/ZHOUYUANN/BlogBed/blob/master/4.56lixtsqn0s0.webp?raw=true',
+            'https://git.poker/ZHOUYUANN/BlogBed/blob/master/4.56lixtsqn0s0.webp?raw=true',
           user: '周大帅',
           text: '我是大帅哥！！！'
         },
         {
           duration: 44,
           avatar:
-            './https://git.poker/ZHOUYUANN/BlogBed/blob/master/1.1mq8h4qx4ups.webp?raw=true',
+            'https://git.poker/ZHOUYUANN/BlogBed/blob/master/1.1mq8h4qx4ups.webp?raw=true',
           user: '孤痞°',
           text: '当爱情遗落成遗迹 用象形刻划成回忆'
         },
         {
           duration: 146,
           avatar:
-            './https://git.poker/ZHOUYUANN/BlogBed/blob/master/1.1mq8h4qx4ups.webp?raw=true',
+            'https://git.poker/ZHOUYUANN/BlogBed/blob/master/1.1mq8h4qx4ups.webp?raw=true',
           user: '莫忘初心丶',
           text: '垃圾王者荣耀'
         }
