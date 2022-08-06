@@ -1,4 +1,4 @@
-[预览图](https://github.com/ZHOUYUANN/yAudio/blob/main/audio.gif)
+![预览图](https://github.com/ZHOUYUANN/yAudio/blob/main/audio.gif)
 
 ### 介绍
 
