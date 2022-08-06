@@ -458,7 +458,7 @@
       element.querySelector('.yAudio-pro').style.width = left + 'px'
       element.querySelector('.yAudio-current').innerHTML = this.formatTime(time)
 
-      this.renderComment(left)
+      this.single && this.renderComment(left)
     },
     onWaveformMouseMove: function (event) {
       var element = this.option.element
@@ -487,7 +487,7 @@
       element.classList.add('comment')
       currentTarget.classList.add('current')
 
-      this.renderComment(currentTarget.offsetLeft)
+      this.single && this.renderComment(currentTarget.offsetLeft)
     },
     onCommentMouseLeave: function (event) {
       this.commentMoving = false
@@ -689,7 +689,7 @@
             proBarWidth = width
           }
 
-          if (!self.commentMoving) {
+          if (!self.commentMoving && self.single) {
             // 渲染评论
             self.renderComment(proBarWidth)
           }
