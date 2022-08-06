@@ -10,10 +10,14 @@
     }
     // 合并后的参数
     this.option = Object.assign({}, defaultOption, params)
-    this.playIndex =
-      Object.prototype.toString.call(this.option.audio) === '[object Array]'
-        ? this.option.playIndex
-        : -1
+    // 歌曲索引
+    this.playIndex = this._isArray(this.option.audio)
+      ? this.option.playIndex
+      : -1
+    // 是否是单曲
+    this.single =
+      (this._isArray(this.option.audio) && this.option.audio.length === 1) ||
+      !this._isArray(this.option.audio)
     this.music = this.getMusic(this.playIndex)
     // 是否正在播放
     this.playing = false
@@ -125,7 +129,7 @@
               </div>
             </div>
             ${
-              this.playIndex === -1
+              this.single
                 ? `
                 <div class="yAudio-comments">
                   <div class="yAudio-wrapper"></div>
@@ -146,7 +150,7 @@
             <time class="yAudio-total">00:00</time>
           </main>
           ${
-            this.playIndex > -1
+            !this.single
               ? `
               <footer class="yAudio-footer">
                 <div class="yAudio-list">
@@ -743,24 +747,28 @@
       this.addEvent(this.waveform, 'mousemove', this.onWaveformMouseMove)
       this.addEvent(this.waveform, 'mouseleave', this.onWaveformMouseLeave)
 
-      this.addEvent(
-        element.querySelector('.yAudio-list-container'),
-        'scroll',
-        this.onAudilListScroll
-      )
-      this.addEvent(
-        element.querySelector('.yAudio-list-wrapper'),
-        'click',
-        this.onAudioListClick
-      )
-      this.addEvent(
-        element.querySelector('.yAudio-more'),
-        'click',
-        this.onAudioListMore
-      )
+      !this.single &&
+        this.addEvent(
+          element.querySelector('.yAudio-list-container'),
+          'scroll',
+          this.onAudilListScroll
+        )
+      !this.single &&
+        this.addEvent(
+          element.querySelector('.yAudio-list-wrapper'),
+          'click',
+          this.onAudioListClick
+        )
+      !this.single &&
+        this.addEvent(
+          element.querySelector('.yAudio-more'),
+          'click',
+          this.onAudioListMore
+        )
 
       this.addEvent(element.querySelector('.yAudio-play'), 'click', this.onPlay)
-      this.playIndex === -1 &&
+
+      this.single &&
         this.addEvent(
           element.querySelector('.yAudio-comments-from__input'),
           'keydown',
@@ -772,7 +780,7 @@
       this.addEvent(this.audio, 'ended', this.onAudioEnd)
       this.addEvent(this.audio, 'durationchange', this.onAudioDurationChange)
 
-      this.playIndex === -1 &&
+      this.single &&
         this.addEvent(this.audio, 'loadeddata', this.onAudioLoadedData)
     },
     hexToRgb: function (hex, palpha) {
@@ -825,12 +833,12 @@
     },
     renderComment: function (offsetLeft) {
       var element = this.option.element,
-        WIDTH = 12,
+        WIDTH = 30,
         popover = element.querySelector('.yAudio-popover-wrapper'),
         wrapper = element.querySelector('.yAudio-wrapper'),
         items = element.querySelectorAll('.yAudio-wrapper__item')
 
-      // wrapper.classList.remove('active')
+      wrapper.classList.remove('active')
       for (var i = 0; i < items.length; i++) {
         if (
           items[i].offsetLeft <= offsetLeft &&
@@ -855,7 +863,6 @@
           popover.querySelector('.yAudio-popover-wrapper__comment').innerHTML =
             items[i].getAttribute('data-text')
         } else {
-          wrapper.classList.remove('active')
           items[i].classList.remove('current')
         }
       }
@@ -897,6 +904,12 @@
         container = element.querySelector('.yAudio-list-container'),
         items = element.querySelectorAll('.yAudio-list-wrapper__item'),
         height = 30
+      if (this.single) {
+        this.getMusicArrayBuffer(function () {
+          self.initAudio()
+        })
+        return
+      }
       if (type === 'next') {
         if (this.playIndex > -1) {
           index++
@@ -1005,6 +1018,9 @@
         p = p.previousSibling
       }
       return index
+    },
+    _isArray: function (data) {
+      return Object.prototype.toString.call(data) === '[object Array]'
     }
   }
 

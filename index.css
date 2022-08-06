@@ -209,7 +209,7 @@
   position: absolute;
   top: 0;
   left: 10px;
-  width: 12px;
+  width: 30px;
   height: 12px;
   background-color: #222;
   background-repeat: no-repeat;
@@ -227,15 +227,9 @@
   width: 100%;
   height: 30px;
   line-height: 30px;
-  opacity: 0;
   font-size: 12px;
   box-sizing: border-box;
   transition: all 0.3s ease-out;
-}
-
-.yAudio.start .yAudio-content .yAudio-popover,
-.yAudio.comment .yAudio-content .yAudio-popover {
-  opacity: 1;
 }
 
 .yAudio .yAudio-content .yAudio-popover-wrapper {
