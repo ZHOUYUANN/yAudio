@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css" />
+    <style>
+      .yAudio {
+        width: 820px;
+        margin: 100px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="yAudio" id="yAudio"></div>
+    <script src="./index.js"></script>
+    <script>
+      // var a = new YAudio({
+      //   element: document.querySelector('#yAudio1'),
+      //   playIndex: 0,
+      //   audio: [{
+      //     author: '可有道',
+      //     lrc: '[00:01.04]我承认我去过夜店\n[00:03.11]但是刚进去就受不了\n[00:05.08]里面居然没有书\n[00:06.80]没有知识的海洋\n[00:08.08]五颜六色的灯照来照去\n[00:09.73]那些人好粗鲁\n[00:10.65]好像很屌的样子\n[00:12.52]我当时特别害怕\n[00:13.73]发现那里并不适合我\n[00:16.47]所以我就把果盘吃了就回去看书了\n[00:19.50]只有学习让我快乐\n[00:21.06]只有知识让我爆满\n[00:22.94]只有文化让我充实\n[00:25.02]只有两学一做才能让我进步\n[03:00.01]但是刚进去就受不了\n[03:01.83]里面居然没有书\n[03:13.35]只有学习让我快乐\n[03:14.98]只有知识让我爆满\n[03:16.65]只有文化让我充实\n[03:18.65]只有两学一做才能让我进步\n',
+      //     pic: 'https://p1.music.126.net/0__eW4Prf8mcmCPU7PZioQ==/109951163214185279.jpg',
+      //     title: '只有学习让我快乐',
+      //     url: 'http://localhost/audio/rythmD.mp3',
+      //   }]
+      // })
+      fetch(
+        'https://api.i-meto.com/meting/api?server=netease&type=playlist&id=697421859'
+      ).then(async (response) => {
+        const audio = await response.json()
+        new YAudio({
+          element: document.querySelector('#yAudio'),
+          playIndex: 2,
+          audio: audio
+        })
+      })
+    </script>
+  </body>
+</html>
