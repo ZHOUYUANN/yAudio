@@ -290,7 +290,7 @@
       return mergedPeaks
     },
     drawCanvas: function (canvas, peaks, color) {
-      var bar_space = 1,
+      var barSpace = 1,
         botSize = 0.25,
         self = this
 
@@ -317,22 +317,22 @@
 
       var barCount = self.width / 3
 
-      var bar_w = Math.ceil(self.width / barCount)
+      var barWidth = Math.ceil(self.width / barCount)
 
       var topSize = 1 - botSize
       var lastBarHeight = 0
-      var searched_index = null
+      var index = null
       var proBarColors = []
 
       function drawBars(isReflection) {
         for (var i = 0; i < barCount; i++) {
           ctx.save()
 
-          searched_index = Math.ceil(i * (newArr.length / barCount))
+          index = Math.ceil(i * (newArr.length / barCount))
 
           if (i < barCount / 5) {
-            if (newArr[searched_index] < 0.1) {
-              newArr[searched_index] = 0.1
+            if (newArr[index] < 0.1) {
+              newArr[index] = 0.1
             }
           }
           if (
@@ -340,19 +340,14 @@
             i > 0 &&
             i < newArr.length - 1
           ) {
-            newArr[searched_index] =
-              Math.abs(
-                newArr[searched_index] +
-                  newArr[searched_index - 1] +
-                  newArr[searched_index + 1]
-              ) / 3
+            newArr[index] =
+              Math.abs(newArr[index] + newArr[index - 1] + newArr[index + 1]) /
+              3
           }
 
           var targetRatio = isReflection ? botSize : topSize
 
-          var barHeight = Math.abs(
-            newArr[searched_index] * self.height * targetRatio
-          )
+          var barHeight = Math.abs(newArr[index] * self.height * targetRatio)
 
           if (isNaN(lastBarHeight)) {
             lastBarHeight = 0
@@ -367,7 +362,7 @@
             : Math.ceil(self.height * targetRatio - barHeight)
 
           ctx.beginPath()
-          ctx.rect(i * bar_w, barPositionTop, bar_w - bar_space, barHeight)
+          ctx.rect(i * barWidth, barPositionTop, barWidth - barSpace, barHeight)
 
           if (isReflection) {
             ctx.fillStyle = self.hexToRgb(color, 0.25)
