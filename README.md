@@ -1,6 +1,7 @@
-![单曲预览图](https://git.poker/ZHOUYUANN/BlogBed/blob/master/audio1.1vt1ck8xx24g.gif?raw=true)
+![单曲预览图](https://cdn.staticaly.com/gh/ZHOUYUANN/BlogBed@master/audio.2l2g8ii1dvk0.gif)
 
-![歌单预览图](https://git.poker/ZHOUYUANN/BlogBed/blob/master/audio.2l2g8ii1dvk0.gif?raw=true)
+![歌单预览图](https://cdn.staticaly.com/gh/ZHOUYUANN/BlogBed@master/audio1.1vt1ck8xx24g.gif)
+
 
 ### 介绍
 
